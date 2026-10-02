@@ -20,6 +20,7 @@ test('TeeChart renders and supports filters, legends, table search and downloads
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   await expect(page.locator('h1')).toHaveText('The digital world, in perspective.');
   await expect(page.locator('.period-note')).toContainText('September 2026');
+  await expect(page.getByRole('link', { name: 'Source on GitHub' })).toHaveAttribute('href', 'https://github.com/YerayAlonso/global-signals');
   await expect.poll(() => page.evaluate(() => !!window.Tee)).toBe(true);
   const painted = await page.locator('canvas').evaluate(canvas => {
     const c = canvas as HTMLCanvasElement;

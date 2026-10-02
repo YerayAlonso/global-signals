@@ -1,6 +1,9 @@
 # Global Signals
 
-Una demo moderna i responsive de [Statcounter Global Stats](https://gs.statcounter.com/), amb interfície en anglès i gràfics **TeeChart JS**. Preparada per desplegar a **Vercel Hobby** sense base de dades, serveis de pagament ni claus d’API.
+Una demo moderna i responsive de [Statcounter Global Stats](https://gs.statcounter.com/), amb interfície en anglès i gràfics **TeeChart JS**. Funciona sense base de dades, serveis de pagament ni claus d’API.
+
+- **Demo en viu:** [global-signals.vercel.app](https://global-signals.vercel.app)
+- **Repositori:** [YerayAlonso/global-signals](https://github.com/YerayAlonso/global-signals)
 
 ## Executar en local
 
@@ -20,17 +23,6 @@ pnpm exec playwright install chromium
 pnpm test:e2e       # Navegador: gràfics reals, filtres, mòbil, exports i errors
 pnpm data:check     # Verificació en viu contra StatCounter; requereix xarxa
 ```
-
-## Desplegar a Vercel gratuïtament
-
-1. Puja aquest repositori al teu GitHub.
-2. A Vercel, selecciona **Add New → Project** i importa’l.
-3. El fitxer `vercel.json` configura el preset **Astro**, la instal·lació amb `pnpm install --frozen-lockfile` i la compilació amb `pnpm build`. Deixa l’Output Directory al valor automàtic del preset.
-4. Fes servir **Node.js 24.x** i desplega. No cal configurar variables d’entorn.
-
-L’adaptador oficial genera `.vercel/output`: la pàgina principal i els assets són estàtics; `/api/stats` és l’única funció serverless. El pla Hobby és adequat per a aquesta demo personal, subjecte a les seves quotes i condicions. No cal cron ni cap complement de pagament. La connexió del projecte a Vercel s’ha de fer amb el teu compte.
-
-`astro preview` només previsualitza els assets estàtics d’aquest adaptador. Per comprovar la pàgina i l’API conjuntament, fes servir `pnpm dev`, o `vercel dev` si tens Vercel CLI configurat.
 
 ## Per què Astro + Preact?
 

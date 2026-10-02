@@ -180,7 +180,7 @@ export default function Dashboard({ initial }: { initial: Dataset }) {
       <div class="nav-divider" />
       <div class="sidebar-label">RESOURCES</div>
       <nav class="main-nav resource-nav" aria-label="Resources"><button onClick={() => setMethodology(true)}><CircleHelp size={19} />Methodology</button><a href="https://gs.statcounter.com/" target="_blank" rel="noreferrer"><ExternalLink size={18} />Data source<ArrowUpRight size={14} class="external-arrow" /></a></nav>
-      <div class="sidebar-bottom"><div class="sidebar-note"><span class="note-icon"><Sparkles size={19} /></span><h3>A fresh perspective.</h3><p>Trusted data.<br />A better way to explore it.</p><button onClick={() => setMethodology(true)}>About this project <ArrowRight size={15} /></button></div><div class="sidebar-credit"><span class="tiny-dot" /> Built with Astro + Preact</div></div>
+      <div class="sidebar-bottom"><div class="sidebar-note"><span class="note-icon"><Sparkles size={19} /></span><h3>A fresh perspective.</h3><p>Trusted data.<br />A better way to explore it.</p><button onClick={() => setMethodology(true)}>About this project <ArrowRight size={15} /></button></div></div>
     </aside>
 
     <div class="main-shell">
@@ -222,7 +222,7 @@ export default function Dashboard({ initial }: { initial: Dataset }) {
           </section>
         </div>
 
-        <footer class="page-footer"><div><a href="https://gs.statcounter.com/" target="_blank" rel="noreferrer">Statcounter Global Stats</a><span>·</span><a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noreferrer">CC BY-SA 3.0</a><p>Web usage share, not user counts. Data may be revised for 45 days after publication.</p></div><a class="original-link" href={source} target="_blank" rel="noreferrer">Explore the original data <ArrowUpRight size={15} /></a></footer>
+        <footer class="page-footer"><div><a href="https://gs.statcounter.com/" target="_blank" rel="noreferrer">Statcounter Global Stats</a><span>·</span><a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noreferrer">CC BY-SA 3.0</a><p>Web usage share, not user counts. Data may be revised for 45 days after publication.</p></div><nav class="footer-links" aria-label="Project links"><a class="original-link" href={source} target="_blank" rel="noreferrer">Explore the original data <ArrowUpRight size={15} /></a><a class="source-link" href="https://github.com/YerayAlonso/global-signals" target="_blank" rel="noreferrer">Source on GitHub <ExternalLink size={14} /></a></nav></footer>
       </main>
     </div>
     {notice && <div class="toast" role="status"><Check size={17} />{notice}</div>}

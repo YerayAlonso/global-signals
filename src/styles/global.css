@@ -36,8 +36,6 @@ h1, h2, h3, p { margin: 0; }
 .sidebar-note h3 { margin: 14px 0 7px; font-size: 12px; font-weight: 650; }
 .sidebar-note p { color: #8a96a9; font-size: 11px; line-height: 1.8; }
 .sidebar-note button { display: flex; align-items: center; gap: 8px; color: #3970cf; font-size: 10px; font-weight: 650; padding: 0; margin-top: 18px; }
-.sidebar-credit { color: #9ba6b6; font-size: 9px; display: flex; align-items: center; gap: 6px; padding: 18px 9px 0; }
-.tiny-dot { height: 5px; width: 5px; background: #9aa8bd; border-radius: 50%; }
 .main-shell { margin-left: var(--sidebar); }
 .topbar { height: 76px; border-bottom: 1px solid var(--border); background: #ffffffc9; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; }
 .breadcrumb { display: flex; align-items: center; gap: 11px; color: #8b97aa; font-size: 11px; }
@@ -171,7 +169,9 @@ tbody .brand-mark { margin-right: 10px; }
 .page-footer > div > a { color: #8193af; }
 .page-footer > div > span { margin: 0 7px; }
 .page-footer p { margin-top: 8px; font-size: 8px; line-height: 1.8; }
+.footer-links { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 16px; }
 .original-link { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; color: #8799b4; }
+.source-link { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; color: #8799b4; }
 .page-footer a:hover { color: var(--blue); }
 .analytics { transition: opacity .15s; }
 .analytics.is-loading { opacity: .4; pointer-events: none; }
@@ -210,7 +210,6 @@ html[data-theme="dark"] .logo { color: #eef3fc; }
 html[data-theme="dark"] .logo-light { color: #85aaff; }
 html[data-theme="dark"] .logo small,
 html[data-theme="dark"] .sidebar-label,
-html[data-theme="dark"] .sidebar-credit,
 html[data-theme="dark"] .breadcrumb { color: #8392aa; }
 html[data-theme="dark"] .breadcrumb strong { color: #ccd6e6; }
 html[data-theme="dark"] .main-nav button,
@@ -227,8 +226,7 @@ html[data-theme="dark"] .chart-footer,
 html[data-theme="dark"] .chart-panel .panel-header { border-color: #253147; }
 html[data-theme="dark"] .sidebar-note { background: #141e2e; border-color: #253249; }
 html[data-theme="dark"] .sidebar-note h3 { color: #e0e8f4; }
-html[data-theme="dark"] .sidebar-note p,
-html[data-theme="dark"] .sidebar-credit { color: #93a1b7; }
+html[data-theme="dark"] .sidebar-note p { color: #93a1b7; }
 html[data-theme="dark"] .note-icon { color: #9bbaff; background: #1d3153; }
 html[data-theme="dark"] .topbar { background: #0f1725eF; border-color: #253147; }
 html[data-theme="dark"] .text-button { color: #aab6c8; }
@@ -280,6 +278,7 @@ html[data-theme="dark"] .chart-footer a,
 html[data-theme="dark"] .table-footer a,
 html[data-theme="dark"] .page-footer > div > a,
 html[data-theme="dark"] .original-link { color: #a5b9dc; }
+html[data-theme="dark"] .source-link { color: #a5b9dc; }
 html[data-theme="dark"] .insights-strip { background: #14233a; border-color: #2b3e5d; }
 html[data-theme="dark"] .insights-label { color: #a5c0f3; }
 html[data-theme="dark"] .insights-strip p { color: #a9bad4; }
