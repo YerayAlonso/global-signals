@@ -30,7 +30,7 @@ This is a single-page dashboard. It doesn’t need the routing, authentication, 
 
 - **Astro** generates static HTML with real data visible before hydration.
 - **A Preact island** handles filters, tables, the chart legend, shareable URLs, and downloads.
-- **TeeChart JS** renders line and bar charts on Canvas. Steema’s open-source library is MIT-licensed, served from the same domain, and pinned to a specific revision.
+- **TeeChart.js 4.0.5** renders line and bar charts on Canvas. It is self-hosted from the npm package under Steema’s non-commercial license; commercial use requires separate authorization.
 - **A Vercel function** fetches and validates StatCounter’s CSV export, avoiding browser CORS restrictions from the provider.
 - Fonts are served locally too; the browser doesn’t need to contact Google Fonts.
 
@@ -82,13 +82,13 @@ src/lib/teechart.ts           Async loader and types for the API used
 src/lib/statcounter.ts        CSV parsing, source URL, and data validation
 src/lib/model.ts              Supported filters, formatting, and exports
 src/data/snapshot.json        Real snapshot embedded in the initial HTML
-public/vendor/                TeeChart JS and its original MIT license
+public/vendor/                TeeChart.js 4.0.5 bundle, source map, and license
 ```
 
-TeeChart is pinned to commit `a958b8ba77f1ff9a6480e6ac60d126c4ad45d7c1` from [Steema/TeeChartJS](https://github.com/Steema/TeeChartJS). `pnpm vendor:sync` downloads the same files again; this is not required to install or build the project.
+TeeChart.js is pinned to version `4.0.5` in `package.json` and `pnpm-lock.yaml`. `pnpm vendor:sync` copies its browser bundle, source map, and license from the installed npm package into `public/vendor/`; it is not required to install or build the project.
 
 ## Attribution and licenses
 
 The data comes from **Statcounter Global Stats**, licensed under [Creative Commons Attribution-ShareAlike 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/). Attribution and a source link appear on the page and in exports. Redistributed or adapted data must retain this license. See [StatCounter’s FAQ](https://gs.statcounter.com/faq#credit-license).
 
-TeeChart JS is MIT-licensed; its original license is in `public/vendor/TeeChart-LICENSE.txt`. DM Sans and Manrope are licensed under the SIL Open Font License; their licenses are in `public/vendor/dm-sans-LICENSE.txt` and `public/vendor/manrope-LICENSE.txt`. Lucide icons are ISC-licensed. Global Signals is an independent project and is not affiliated with StatCounter.
+The npm registry metadata labels TeeChart.js 4.0.5 as ISC, but its included license and Steema’s [licensing page](https://www.steema.com/licensing/js) identify this build as subject to the non-commercial license in `public/vendor/TeeChart-LICENSE.md`. Commercial or profit-making use requires separate authorization from Steema. The page and chart exports attribute Steema Software and TeeChart.js. DM Sans and Manrope are licensed under the SIL Open Font License; their licenses are in `public/vendor/dm-sans-LICENSE.txt` and `public/vendor/manrope-LICENSE.txt`. Lucide icons are ISC-licensed. Global Signals is an independent project and is not affiliated with StatCounter or Steema Software.

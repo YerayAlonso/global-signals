@@ -24,7 +24,8 @@
     "@fontsource-variable/manrope": "^5.3.0",
     "astro": "7.3.5",
     "lucide-preact": "^0.468.0",
-    "preact": "^10.29.0"
+    "preact": "^10.29.0",
+    "teechart.js": "4.0.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",

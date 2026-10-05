@@ -1,5 +1,5 @@
-// The upstream library is a classic browser script. These types describe the
-// small public API we use, keeping it outside the SSR module graph.
+// TeeChart.js 4.0.5 is loaded as a self-hosted browser script. These types
+// describe the small public API we use, outside the SSR module graph.
 export interface Format {
   fill: string;
   stroke: { fill: string; size: number };
