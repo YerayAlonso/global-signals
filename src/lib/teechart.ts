@@ -28,7 +28,7 @@ export interface Series {
   format: Format;
   hover: { enabled: boolean };
   marks: { visible: boolean };
-  pointer: { visible: boolean };
+  pointer: { visible: boolean; style: string; width: number; height: number; format: Format };
   colorEach: string;
   palette: { colors: string[] };
   barSize: number;

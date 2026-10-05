@@ -64,7 +64,14 @@ export default function TeeChart({ data, months, hidden, mode, dark }: Props) {
           line.format.stroke.fill = s.color;
           line.format.stroke.size = 2.5;
           line.format.shadow.visible = false;
-          line.pointer.visible = false;
+          line.pointer.visible = true;
+          line.pointer.style = 'ellipse';
+          line.pointer.width = 7;
+          line.pointer.height = 7;
+          line.pointer.format.fill = '#ffffff';
+          line.pointer.format.shadow.visible = false;
+          line.pointer.format.stroke.fill = s.color;
+          line.pointer.format.stroke.size = 2;
           line.marks.visible = false;
           line.hover.enabled = false;
         });
