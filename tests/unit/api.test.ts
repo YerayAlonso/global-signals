@@ -23,7 +23,7 @@ describe('cached data endpoint', () => {
     expect(await a.json()).toEqual(await b.json());
     await request();
     expect(fetch).toHaveBeenCalledTimes(1);
-    expect(a.headers.get('Cache-Control')).toContain('s-maxage=21600');
+    expect(a.headers.get('Cache-Control')).toBe('public, max-age=300');
   });
   it('revalidates expired entries and explicitly labels a last-good fallback', async () => {
     const a = await request('region=ES');

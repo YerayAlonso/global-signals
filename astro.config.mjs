@@ -1,10 +1,11 @@
 import { defineConfig } from 'astro/config';
 import preact from '@astrojs/preact';
-import vercel from '@astrojs/vercel';
+import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
   integrations: [preact()],
-  adapter: vercel(),
+  adapter: cloudflare({ imageService: 'passthrough' }),
   output: 'static',
+  session: false,
   devToolbar: { enabled: false },
 });

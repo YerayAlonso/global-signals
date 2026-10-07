@@ -1,4 +1,6 @@
 allowBuilds:
   esbuild: true
-overrides:
-  "@vercel/routing-utils>path-to-regexp": 6.3.0
+  workerd: true
+minimumReleaseAgeExclude:
+  - '@astrojs/cloudflare@14.3.4'
+  - '@astrojs/internal-helpers@0.12.0'

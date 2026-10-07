@@ -2,6 +2,7 @@ node_modules/
 dist/
 .astro/
 .vercel/
+.wrangler/
 playwright-report/
 test-results/
 .env*

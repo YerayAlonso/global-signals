@@ -17,7 +17,7 @@ pnpm dev
 Open `http://localhost:4321`.
 
 ```sh
-pnpm build          # TypeScript checks and Astro/Vercel build
+pnpm build          # TypeScript checks and Astro/Cloudflare build
 pnpm test           # CSV, filters, caching, and fallback tests
 pnpm exec playwright install chromium
 pnpm test:e2e       # Browser tests: charts, filters, mobile, exports, and errors
@@ -31,7 +31,7 @@ This is a single-page dashboard. It doesn’t need the routing, authentication, 
 - **Astro** generates static HTML with real data visible before hydration.
 - **A Preact island** handles filters, tables, the chart legend, shareable URLs, and downloads.
 - **TeeChart.js 4.0.5** renders line and bar charts on Canvas. It is self-hosted from the npm package under Steema’s non-commercial license; commercial use requires separate authorization.
-- **A Vercel function** fetches and validates StatCounter’s CSV export, avoiding browser CORS restrictions from the provider.
+- **A Cloudflare Worker** fetches and validates StatCounter’s CSV export, avoiding browser CORS restrictions from the provider.
 - Fonts are served locally too; the browser doesn’t need to contact Google Fonts.
 
 ## Data and freshness
@@ -42,10 +42,10 @@ StatCounter’s public export at `https://gs.statcounter.com/chart.php?...&csv=1
 
 - The app fetches **24 complete months**, through the month before the server’s current date. The period selector shows the most recent 6, 12, or 24 months without making another upstream request.
 - StatCounter publishes data daily, at around 13:00 GMT, and may revise it during the first 45 days. This demo displays it at monthly granularity.
-- The function sets `s-maxage=21600` (6 hours) and `stale-while-revalidate=86400` for Vercel’s CDN. It also uses an in-process cache and deduplicates concurrent requests. Cache persistence and reuse depend on the function’s lifecycle; it is not a database.
-- The browser reuses responses for 15 minutes. **Refresh data** clears this local cache, but the response may still come from the CDN or server cache.
+- The Worker keeps a best-effort six-hour in-memory cache per running isolate and deduplicates concurrent requests. The browser HTTP cache keeps successful responses for five minutes, and the dashboard also keeps results in memory for 15 minutes. Worker memory is temporary and may be cleared when an isolate stops; it is not a database.
+- **Refresh data** clears the dashboard’s in-memory cache, but the browser HTTP cache or the current Worker isolate may still have a recent response.
 - `src/data/snapshot.json` contains a real snapshot for October 2024–September 2026. It is included in the initial HTML so the page isn’t empty while loading, then automatically revalidated.
-- If the source is unavailable, the API can return the last valid response for the same scope from memory, or the bundled snapshot for worldwide browser data. Fallbacks are clearly labelled and are not cached by the CDN. For scopes without a saved copy, the app shows an error and keeps the previous, clearly identified results.
+- If the source is unavailable, the API can return the last valid response for the same scope from memory, or the bundled snapshot for worldwide browser data. Fallbacks are clearly labelled and returned with `Cache-Control: no-store`. For scopes without a saved copy, the app shows an error and keeps the previous, clearly identified results.
 - The source measures **usage share based on page views**, not unique users. Search engines are measured by the traffic they refer. The bar chart shows the latest month; **it is not an average of the percentages over the selected period**.
 
 To refresh the initial snapshot before a new deployment:
@@ -56,6 +56,23 @@ pnpm build
 ```
 
 Live queries continue to update without redeploying. Refreshing the snapshot is optional; it only improves the initial page content and fallback.
+
+## Deploy to Cloudflare
+
+This branch is configured for **Cloudflare Workers**, which serves both the static site and the `/api/stats` endpoint. The current Astro Cloudflare adapter deploys to Workers rather than Cloudflare Pages. Workers provides a free `workers.dev` URL, for example `global-signals.<your-account-subdomain>.workers.dev`.
+
+To connect the GitHub repository, open **Workers & Pages → Create application → Import a repository** in the Cloudflare dashboard, then configure:
+
+- Repository: `YerayAlonso/global-signals`
+- Worker name: `global-signals` (must match `wrangler.jsonc`)
+- Production branch: `cloudflare` (switch this to `main` after merging, if desired)
+- Root directory: `/`
+- Build command: `pnpm build`
+- Deploy command: `pnpm exec wrangler deploy --config dist/server/wrangler.json`
+
+The project pins pnpm in `package.json` and Wrangler in the lockfile. Enable the account’s `workers.dev` subdomain in the dashboard; Cloudflare will then provide the persistent URL for this Worker. For local deployment, run `pnpm deploy:cloudflare` after authenticating Wrangler with `pnpm exec wrangler login`.
+
+See the [Astro Cloudflare adapter guide](https://docs.astro.build/en/guides/integrations-guide/cloudflare/) and [Cloudflare Workers Builds](https://developers.cloudflare.com/workers/ci-cd/builds/).
 
 ## Interactions
 

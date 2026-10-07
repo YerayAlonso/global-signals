@@ -10,7 +10,7 @@ const json = (data: unknown, status = 200, cached = false) => new Response(JSON.
   status,
   headers: {
     'Content-Type': 'application/json; charset=utf-8',
-    'Cache-Control': cached ? 'public, max-age=300, s-maxage=21600, stale-while-revalidate=86400' : 'no-store',
+    'Cache-Control': cached ? 'public, max-age=300' : 'no-store',
     'X-Content-Type-Options': 'nosniff',
   },
 });
